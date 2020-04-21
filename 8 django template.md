@@ -25,13 +25,15 @@
 
 - {{posts}} 처럼 넣어 표시 해줘야 함
 
-  ```python
+  ```html
   {% for post in posts%}
   	<p>publised_date : {{post.published_date}}</p>
       <h1><a href="">{{post.title}}</a></h1>
       <p>{{post.text|linebreaksbr}} #행바뀜을 문단으로 변환하도록 하라
   {% endfor %} #for 문을 돌려 쿼리문안의 object들을 가져온다
   ```
+  
+ 
 
   
 
