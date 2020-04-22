@@ -31,3 +31,24 @@
 <link rel ="stylesheet" href = "{% static 'css/blog.css '%}">
 ```
 
+```css
+body {
+    padding-left: 25px;
+} #왼쪽 여백을 25px 남기겠다
+```
+
+```html
+	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css"> #lobster 라는 글꼴을 링크로 가져옴
+```
+
+```html
+<div class="page-header">
+    <h1><a href="/">Django Girls Blog</a></h1>
+</div>  #class를 상단으로 명해줌
+<div class="post">
+    <p>published: {{ post.published_date }}</p>
+    <h1><a href="">{{ post.title }}</a></h1>
+    <p>{{ post.text|linebreaksbr }}</p>
+</div> #기재할 수 있도록 post로 명해줌
+```
+
