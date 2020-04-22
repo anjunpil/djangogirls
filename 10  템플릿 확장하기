@@ -1,0 +1,47 @@
+## 템플릿 확장하기
+
+- `base.html` 을 생성, 정적인 파일들을 이곳에 저장, 불러오기를 한다
+
+  ```html
+  <body>
+      <div class="page-header">
+          <h1><a href="/">Django Girls Blog</a></h1>
+      </div>
+      <div class="content container">
+          <div class="row">
+              <div class="col-md-8">
+              {% block content %}
+              {% endblock %}  <-
+              </div>
+          </div>
+      </div>
+  </body>
+  ```
+
+   
+
+- block을 만들어 post_list에 보낸다
+
+```html
+{% block content %}
+{% endblock %}
+```
+
+- `post_list` 변경, block건 부분을 다른 html을 만들때에도 base를 불러와서 사용하면 된다, 굳이 head부분을 다 작성 할 필요가 없음
+
+```html
+{% extends 'blog/base.html' %} #base.html에서 head부분을 불러옴
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}  #block한 부분
+```
+
