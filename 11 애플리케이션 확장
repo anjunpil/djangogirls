@@ -1,0 +1,59 @@
+## 애플리케이션 확장하기
+
+#### Post에 템플릿 링크 만들기
+
+```python
+<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+```
+
+- url name post_detail.html을 불러오겠다 
+- pk(prmiary key) : 레코드를 식별하는 기본키
+
+#### Post 상세 페이지 URL만들기
+
+- post_detail view가 보이게 url만들기
+
+```python
+   path('post/<int:pk>/',views.post_detail,name='post_detail'),
+```
+
+- `post` - URL이 post문자를 포함해야 한다
+
+- `<int: pk>` - 장고는 정수 값을 기대하고 이를 pk라는 변수로 view를 전송한다
+
+- `/` - 다음에 /가 한번 더 와야한다는 의미
+
+- 브라우저에 `http://127.0.0.1:8000/post/5/` 라고 입력하면 장고는 post_detail 뷰를 찾아 매개변수 `pk` 가 `5` 인 값을 찾아 뷰로 전달함(고유번호라 생각)
+
+- `def post_detail(request, pk):` 라고 pk를 추가해 준다
+
+- Post.objects.get(pk=pk) 게시글 한개만 보려할 때 작성
+
+  ```python
+  <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1> #pk값은 post의 pk값으로 가져오겠다
+  ```
+
+  
+
+- `post_detail.html` 작성
+
+```html
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}
+```
+
+- `{% if %},{% endif %}` python if 문과 같다 생각
+
+- `post` 특정 pk값으로 정보를 가져옴
+
